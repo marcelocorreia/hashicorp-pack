@@ -1,0 +1,23 @@
+---
+arch: linux_amd64
+system_user: ubuntu
+system_group: staff
+install_dir: /usr/local/bin
+download_location: https://releases.hashicorp.com
+hashicorp:
+  apps:
+    - name: nomad
+      state: absent
+      version: 0.2.3
+    - name: vault
+      state: absent
+      version: 0.4.0
+    - name: otto
+      state: absent
+      version: 0.1.2
+    - name: packer
+      state: absent
+      version: 0.8.6
+    - name: terraform
+      state: absent
+      version: 0.6.8
