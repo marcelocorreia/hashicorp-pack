@@ -3,7 +3,7 @@
 galaxy_info:
   author: Marcelo Correia
   company: BulletProof
-  description: "Install Hashicorp's Terraform"
+  description: "Install Hashicorp's Apps"
   min_ansible_version: 1.4
   license: MIT
   platforms:
@@ -11,9 +11,6 @@ galaxy_info:
     versions:
     - all
   - name: Ubuntu
-    versions:
-    - all
-  - name: Debian
     versions:
     - all
   categories:
