@@ -21,3 +21,53 @@ hashicorp:
     - name: terraform
       state: absent
       version: 0.6.8
+    - name: consul
+      state: absent
+      version: 0.6.0
+
+
+dnsmasq:
+  config_file: "/etc/dnsmasq.d/10-consul"
+
+consul:
+  install:
+    dir : "/usr/local/bin"
+    download_location: "https://releases.hashicorp.com/consul"
+    force_download: "{{ consul_force_download | default(false) }}"
+    file_list:
+      - "consul"
+  datacenter: "{{ consul_datacenter | default('dc1') }}"
+  bootstrap_expect: "{{ consul_bootstrap_expect | default('1') }}"
+  group: "{{ consul_group | default('consul') }}"
+  iface: "{{ consul_iface | default('eth0') }}"
+  ip: "{{ consul_ip | default('127.0.0.1') }}"
+  log_level: "{{ consul_log_level | default('info') }}"
+  port: "{{ consul_port | default(8600) }}"
+  suffix: "{{ consul_suffix | default('consul') }}"
+  ui_dir: "{{ consul_ui_dir | default( '/var/consul/ui' ) }}"
+  uid: "{{ consul_uid | default(1050) }}"
+  user: "{{ consul_user | default('consul') }}"
+  version: "{{ consul_version }}"
+  encrypt_key: "{{ consul_encrypt_key }}"
+  dirs:
+    - "/etc/consul.d"
+    - "/var/consul/data"
+    - "/var/consul/ui_src"
+  config:
+    dir: "/etc/consul.d"
+    service_file: "{{ consul_config_service_file | default('/etc/init/consul.conf') }}"
+  data_dir: "{{ consul_data_dir | default('/var/consul/data') }}"
+
+nomad:
+  user: root
+  group: root
+  datacenter: "{{ nomad_datacenter | default('dc1') }}"
+  bootstrap_expect: "{{ nomad_bootstrap_expect | default('1') }}"
+  iface: "{{ nomad_iface | default('eth0') }}"
+  log_level: "{{ nomad_log_level | default('info') }}"
+  dirs:
+    - "/etc/nomad.d"
+  config:
+    dir: "/etc/nomad.d"
+    service_file: "{{ nomad_config_service_file | default('/etc/init/nomad.conf') }}"
+  data_dir: "{{ nomad_data_dir | default('/var/nomad/data') }}"

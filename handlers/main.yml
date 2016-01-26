@@ -1,0 +1,13 @@
+- name: start consul
+  sudo: yes
+  service: name=consul state=started
+
+- name: restart consul
+  sudo: yes
+  service: name=consul state=restarted
+
+- name: restart dnsmasq
+  service: name=dnsmasq state=restarted
+
+- name: restart NGINX
+  service: name=nginx state=restarted
