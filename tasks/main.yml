@@ -1,10 +1,18 @@
 ---
+<<<<<<< HEAD
 - name: Setting variable arch := linux_amd64
+=======
+- name: Sets Package Arch -> linux_amd64
+>>>>>>> 90b704fcee1946490fc07d383f2d6d3a7a5f90b5
   set_fact:
     arch: linux_amd64
   when: ansible_system == "Linux"
 
+<<<<<<< HEAD
 - name: Setting variable arch := darwin_amd64
+=======
+- name: Sets Package Arch -> darwin_amd64
+>>>>>>> 90b704fcee1946490fc07d383f2d6d3a7a5f90b5
   set_fact:
     arch: darwin_amd64
   when: ansible_system == "Darwin"
@@ -23,7 +31,6 @@
     - hashicorp
     - install
     - download
-
 
 - name: Unpacks to location
   unarchive: >
@@ -54,3 +61,5 @@
     - install
     - cleanup
 
+- include: consul.yml
+- include: nomad.yml

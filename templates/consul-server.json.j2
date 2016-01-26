@@ -1,0 +1,11 @@
+{
+  "data_dir": "{{ consul.data_dir }}",
+  "datacenter": "{{ consul.datacenter }}",
+  "enable_syslog": true,
+  "encrypt": "{{ consul.encrypt_key }}",
+  "log_level": "{{  consul.log_level }}",
+  "node_name": "{{ inventory_hostname }}",
+  "server": true,
+  "start_join": [{% for host in groups['consul-bootstrap'] %}"{{ hostvars[host]['inventory_hostname'] }}"{% if not loop.last %},{% endif %}{% endfor %}],
+  "ui_dir": "{{ consul.ui_dir }}"
+}
