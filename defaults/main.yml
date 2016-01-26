@@ -57,6 +57,8 @@ consul:
     service_file: "{{ consul_config_service_file | default('/etc/init/consul.conf') }}"
   data_dir: "{{ consul_data_dir | default('/var/consul/data') }}"
 
+
+
 nomad:
   user: root
   group: root
