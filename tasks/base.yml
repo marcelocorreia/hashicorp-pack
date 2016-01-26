@@ -1,0 +1,54 @@
+---
+- name: Sets Nomad arch -> linux_amd64
+  set_fact:
+    arch: linux_amd64
+  when: ansible_system == "Linux"
+
+- name: Sets Nomad arch -> darwin_amd64
+  set_fact:
+    arch: darwin_amd64
+  when: ansible_system == "Darwin"
+
+- name: Downloads Packages
+  get_url: >
+    url={{ download_location }}/{{ item.name }}/{{ item.version }}/{{ item.name }}_{{ item.version }}_{{ arch }}.zip
+    dest="{{ install_dir }}"
+    mode=0755
+    validate_certs=no
+  sudo: yes
+  when: item.state == 'present'
+  with_items:
+    - "{{ hashicorp.apps }}"
+  tags:
+    - hashicorp
+    - install
+    - download
+
+- name: Unpacks to location
+  unarchive: >
+    src={{ install_dir }}/{{ item.name }}_{{ item.version }}_{{ arch }}.zip
+    dest={{ install_dir }}
+    copy=no
+    mode=755
+    owner=root
+    group=staff
+  sudo: yes
+  when: item.state == 'present'
+  with_items:
+    - "{{ hashicorp.apps }}"
+  tags:
+    - hashicorp
+    - install
+    - unpack
+
+
+- name: Cleans up mess
+  file:
+    path={{ install_dir }}/{{ item.name }}_{{ item.version }}_{{ arch }}.zip
+    state=absent
+  with_items:
+    - "{{ hashicorp.apps }}"
+  tags:
+    - hashicorp
+    - install
+    - cleanup

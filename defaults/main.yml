@@ -24,9 +24,6 @@ hashicorp:
     - name: consul
       state: absent
       version: 0.6.0
-<<<<<<< HEAD
-=======
-
 
 dnsmasq:
   config_file: "/etc/dnsmasq.d/10-consul"
@@ -73,4 +70,4 @@ nomad:
     dir: "/etc/nomad.d"
     service_file: "{{ nomad_config_service_file | default('/etc/init/nomad.conf') }}"
   data_dir: "{{ nomad_data_dir | default('/var/nomad/data') }}"
->>>>>>> 90b704fcee1946490fc07d383f2d6d3a7a5f90b5
+

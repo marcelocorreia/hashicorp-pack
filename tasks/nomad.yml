@@ -1,14 +1,4 @@
 ---
-- name: Sets Nomad arch -> linux_amd64
-  set_fact:
-    arch: linux_amd64
-  when: ansible_system == "Linux"
-
-- name: Sets Nomad arch -> darwin_amd64
-  set_fact:
-    arch: darwin_amd64
-  when: ansible_system == "Darwin"
-
 - name: Creates configuration directories
   file:
     path="{{ item }}"
@@ -81,4 +71,17 @@
     - setup
     - config
 
+- name: Setup Jump Host
+  template:
+    src="../templates/profile.j2"
+    dest="/home/ubuntu/.profile"
+    owner=ubuntu
+    group=ubuntu
+    mode=0750
+  sudo: yes
+  tags:
+    - nomad
+    - setup
+    - config
+    - jumper
 
