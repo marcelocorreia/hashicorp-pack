@@ -21,3 +21,6 @@ hashicorp:
     - name: terraform
       state: absent
       version: 0.6.8
+    - name: consul
+      state: absent
+      version: 0.6.0

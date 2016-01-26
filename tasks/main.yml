@@ -1,10 +1,10 @@
 ---
-- name: Sets Consul arch -> linux_amd64
+- name: Setting variable arch := linux_amd64
   set_fact:
     arch: linux_amd64
   when: ansible_system == "Linux"
 
-- name: Sets Consul arch -> darwin_amd64
+- name: Setting variable arch := darwin_amd64
   set_fact:
     arch: darwin_amd64
   when: ansible_system == "Darwin"
