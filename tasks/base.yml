@@ -23,6 +23,7 @@
     - hashicorp
     - install
     - download
+    - base
 
 - name: Unpacks to location
   unarchive: >
@@ -40,6 +41,7 @@
     - hashicorp
     - install
     - unpack
+    - base
 
 
 - name: Cleans up mess
@@ -52,3 +54,4 @@
     - hashicorp
     - install
     - cleanup
+    - base
