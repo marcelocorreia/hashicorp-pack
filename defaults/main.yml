@@ -72,4 +72,18 @@ nomad:
     dir: "/etc/nomad.d"
     service_file: "{{ nomad_config_service_file | default('/etc/init/nomad.conf') }}"
   data_dir: "{{ nomad_data_dir | default('/var/nomad/data') }}"
+  
+vault:
+  user: root
+  group: root
+  datacenter: "{{ vault_datacenter | default('dc1') }}"
+  bootstrap_expect: "{{ vault_bootstrap_expect | default('1') }}"
+  iface: "{{ vault_iface | default('eth0') }}"
+  log_level: "{{ vault_log_level | default('info') }}"
+  dirs:
+    - "/etc/vault.d"
+  config:
+    dir: "/etc/vault.d"
+    service_file: "{{ vault_config_service_file | default('/etc/init/vault.conf') }}"
+  data_dir: "{{ vault_data_dir | default('/var/vault/data') }}"
 
