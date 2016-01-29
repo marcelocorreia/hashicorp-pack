@@ -1,15 +1,11 @@
-- name: start consul
-  sudo: yes
-  service: name=consul state=started
-
-- name: restart consul
-  sudo: yes
-  service: name=consul state=restarted
-
-- name: restart dnsmasq
-  sudo: yes
-  service: name=dnsmasq state=restarted
-
-- name: restart NGINX
-  sudo: yes
-  service: name=nginx state=restarted
+#- name: restart consul
+#  sudo: yes
+#  service: name=consul state=restarted
+#
+#- name: restart dnsmasq
+#  sudo: yes
+#  service: name=dnsmasq state=restarted
+#
+#- name: restart NGINX
+#  sudo: yes
+#  service: name=nginx state=restarted
