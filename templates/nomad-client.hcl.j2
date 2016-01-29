@@ -10,6 +10,6 @@ client {
   consul {
     token = "{{ consul_encrypt_key }}"
   }
-  servers = ["hq-mgmt-bootstrap-1.int.products.bulletproof.net:4647","hq-mgmt-bootstrap-2.int.products.bulletproof.net:4647","hq-mgmt-bootstrap-3.int.products.bulletproof.net:4647"]
+  servers = [{% for host in groups['nomad-servers'] %}"{{ hostvars[host]['inventory_hostname']}}"{% if not loop.last %},{% endif %}{% endfor %}]
 
 }
