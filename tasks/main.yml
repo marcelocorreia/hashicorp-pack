@@ -9,6 +9,19 @@
     arch: darwin_amd64
   when: ansible_system == "Darwin"
 
+- name: Removes Packages
+  file:
+    src="{{ install_dir}}/{{ item.name }}*"
+    state="absent"
+   sudo: yes
+  when: item.state == 'absent'
+  with_items:
+    - "{{ hashicorp.apps }}"
+  tags:
+    - hashicorp
+    - remove
+    - base
+
 - name: Downloads Packages
   get_url: >
     url={{ download_location }}/{{ item.name }}/{{ item.version }}/{{ item.name }}_{{ item.version }}_{{ arch }}.zip
