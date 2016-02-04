@@ -1,10 +1,10 @@
 ---
-- name: Sets Nomad arch -> linux_amd64
+- name: Sets OS arch -> linux_amd64
   set_fact:
     arch: linux_amd64
   when: ansible_system == "Linux"
 
-- name: Sets Nomad arch -> darwin_amd64
+- name: Sets OS arch -> darwin_amd64
   set_fact:
     arch: darwin_amd64
   when: ansible_system == "Darwin"
