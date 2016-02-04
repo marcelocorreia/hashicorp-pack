@@ -33,6 +33,7 @@
     mode=755
     owner=root
     group=staff
+    creates=yes
   sudo: yes
   when: item.state == 'present'
   with_items:
