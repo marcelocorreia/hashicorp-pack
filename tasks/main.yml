@@ -13,7 +13,7 @@
   file:
     src="{{ install_dir}}/{{ item.name }}*"
     state="absent"
-   sudo: yes
+  sudo: yes
   when: item.state == 'absent'
   with_items:
     - "{{ hashicorp.apps }}"
