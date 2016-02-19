@@ -9,18 +9,21 @@
     arch: darwin_amd64
   when: ansible_system == "Darwin"
 
+- name: Get /usr/local/bin/ file list
+  command: ls {{ install_dir }}
+  register: file_list
+
 - name: Removes Packages
   file:
-    src="{{ install_dir}}/{{ item.name }}*"
+    path="{{ install_dir}}/{{ item.name }}"
     state="absent"
   sudo: yes
-  when: item.state == 'absent'
+  when: item.name in "{{ file_list.stdout_lines }}" and item.state == 'absent'
   with_items:
     - "{{ hashicorp.apps }}"
   tags:
     - hashicorp
     - remove
-    - base
 
 - name: Downloads Packages
   get_url: >
