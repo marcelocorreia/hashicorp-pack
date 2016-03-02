@@ -8,10 +8,10 @@ hashicorp:
   apps:
     - name: nomad
       state: absent
-      version: 0.2.3
+      version: 0.3.0
     - name: vault
       state: absent
-      version: 0.4.0
+      version: 0.5.1
     - name: otto
       state: absent
       version: 0.2.0
@@ -20,7 +20,7 @@ hashicorp:
       version: 0.8.6
     - name: terraform
       state: absent
-      version: 0.6.10
+      version: 0.6.12
     - name: consul
       state: absent
       version: 0.6.3
