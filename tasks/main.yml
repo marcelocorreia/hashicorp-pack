@@ -47,8 +47,8 @@
     dest={{ install_dir }}
     copy=no
     mode=755
-    owner=root
-    group=staff
+    owner="{{ hashicorp.system_user }}"
+    group=""{{ hashicorp.system_group }}""
     creates=yes
   sudo: yes
   when: item.state == 'present'
@@ -61,14 +61,4 @@
     - base
 
 
-- name: Cleans up mess
-  file:
-    path={{ install_dir }}/{{ item.name }}_{{ item.version }}_{{ arch }}.zip
-    state=absent
-  with_items:
-    - "{{ hashicorp.apps }}"
-  tags:
-    - hashicorp
-    - install
-    - cleanup
-    - base
+
