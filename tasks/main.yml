@@ -39,8 +39,8 @@
     dest={{ install_dir }}
     copy=no
     mode=755
-    owner={{ system_user }}
-    group={{ system_group }}
+    owner={{ hashicorp.system_user }}
+    group={{ hashicorp.system_group }}
     creates=yes
   sudo: yes
   when: item.state == 'present'
