@@ -21,9 +21,6 @@
   when: item.name in "{{ file_list.stdout_lines }}" and item.state == 'absent'
   with_items:
     - "{{ hashicorp.apps }}"
-  tags:
-    - hashicorp
-    - remove
 
 - name: Downloads Packages
   get_url: >
@@ -35,11 +32,6 @@
   when: item.state == 'present'
   with_items:
     - "{{ hashicorp.apps }}"
-  tags:
-    - hashicorp
-    - install
-    - download
-    - base
 
 - name: Unpacks to location
   unarchive: >
@@ -47,18 +39,21 @@
     dest={{ install_dir }}
     copy=no
     mode=755
-    owner="{{ hashicorp.system_user }}"
-    group=""{{ hashicorp.system_group }}""
+    owner={{ system_user }}
+    group={{ system_group }}
     creates=yes
   sudo: yes
   when: item.state == 'present'
   with_items:
     - "{{ hashicorp.apps }}"
+
   tags:
     - hashicorp
     - install
     - unpack
     - base
+
+
 
 
 
