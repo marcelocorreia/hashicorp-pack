@@ -3,8 +3,8 @@ arch: linux_amd64
 install_dir: /usr/local/bin
 download_location: https://releases.hashicorp.com
 hashicorp:
-  system_user: ubuntu
-  system_group: staff
+  system_user: "{{ hashicorp.system_user  | default('ubuntu') }}"
+  system_group: "{{ hashicorp.system_group | default('staff') }}"
   apps:
     - name: nomad
       state: absent
