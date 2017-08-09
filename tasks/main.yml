@@ -17,7 +17,7 @@
   file:
     path="{{ install_dir}}/{{ item.name }}"
     state="absent"
-  sudo: yes
+  become: yes
   when: item.name in "{{ file_list.stdout_lines }}" and item.state == 'absent'
   with_items:
     - "{{ hashicorp.apps }}"
@@ -28,7 +28,7 @@
     dest="{{ install_dir }}"
     mode=0755
     validate_certs=no
-  sudo: yes
+  become: yes
   when: item.state == 'present'
   with_items:
     - "{{ hashicorp.apps }}"
@@ -42,7 +42,7 @@
     owner={{ hashicorp.system_user }}
     group={{ hashicorp.system_group }}
     creates=yes
-  sudo: yes
+  become: yes
   when: item.state == 'present'
   with_items:
     - "{{ hashicorp.apps }}"
